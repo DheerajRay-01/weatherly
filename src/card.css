@@ -128,6 +128,10 @@
     font-size: 1.5rem;
 }
 
+.forecast-container {
+    scroll-behavior: smooth;
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;

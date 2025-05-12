@@ -5,6 +5,8 @@ import { showToast } from "./toast.js";
 
 const API_KEY = conf.weatherApiKey;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+const FORCAST_URL = "https://api.weatherapi.com/v1/forecast.json?"
+const FORCAST_API = conf.forcastApiKey;
 const searchBtn = document.querySelector("#search-btn");
 const input = document.querySelector("#location-input");
 const auth_Btn = document.querySelector("#auth-btn");
@@ -12,9 +14,10 @@ const userName = document.getElementById("user-name");
 const userEmail = document.getElementById("user-email");
 const loader = document.querySelector("#loader");
 const profileIcon = document.getElementById("profile-icon");
+const forecast = document.getElementById("forecast-head");
 const profileDropdown = document.getElementById("profile-dropdown");
-let userID;
 
+let userID;
 // Extract city from the URL
 const params = new URLSearchParams(window.location.search);
 const city = params.get("city");
@@ -138,24 +141,82 @@ function updateWeatherUI(data) {
     saveBtn.addEventListener("click", () => handleSave(data.city));
 }
 
-// Handle Save
-async function handleSave(city) {
-    try {
-        if (!userID) {
-            showToast("Please log in to save locations.", "error");
-            return;
-        }
 
-        const saveData = { city, user: userID };
-        await service.createSave(saveData);
-        showToast(`Location saved: ${city}`, "success");
-    } catch (error) {
-        console.error("Error saving location:", error);
-        showToast("Failed to save location. Please try again.", "error");
-    }
+function updateForecastUI(forecastArray) {
+
+    const forecastContainer = document.querySelector("#forecast ul");
+    forecastContainer.innerHTML = ""; // Clear previous data
+    forecast.textContent = "7 Day Forcast"
+
+    forecastArray.forEach((day, index) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("forecast-card");
+        listItem.setAttribute("key", index);
+
+        listItem.innerHTML = `
+         <h3 class="forecast-date">${new Date(day.date).toDateString()}</h3>
+<div class="forecast-icon-container">
+    <img src="${day.conditionIcon}" alt="${day.conditionText}" class="forecast-icon" />
+    <p class="forecast-condition">${day.conditionText}</p>
+</div>
+<div class="forecast-details">
+    <div class="temp-range">
+        <span class="high-temp">⬆️ ${day.maxTempC}°C</span>
+        <span class="low-temp">⬇️ ${day.minTempC}°C</span>
+    </div>
+    <p class="avg-temp">🌡️ Avg: ${day.avgTempC}°C</p>
+    <p class="humidity">💧 Humidity: ${day.avgHumidity}%</p>
+    <p class="rain-chance">🌧️ Rain: ${day.chanceOfRain}%</p>
+</div>
+
+        `;
+
+        forecastContainer.appendChild(listItem);
+    });
+    fetchForecast
 }
 
+
+
+
 // Fetch Weather Data
+
+function fetchForecast(city) {
+    const url = `${FORCAST_URL}key=${FORCAST_API}&q=${city}&days=7&aqi=no&alerts=no`;
+    // Show the loader
+    loader.classList.remove("hidden");
+
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            // Extracting day-wise forecast
+       const forecastArray = data.forecast.forecastday.map(day => ({
+    date: day.date,  // The date of the forecast
+    maxTempC: day.day.maxtemp_c,  // Maximum temperature in Celsius
+    minTempC: day.day.mintemp_c,  // Minimum temperature in Celsius
+    avgTempC: day.day.avgtemp_c,  // Average temperature in Celsius
+    avgHumidity: day.day.avghumidity,  // Average humidity percentage
+    conditionText: day.day.condition.text,  // Text describing the weather condition
+    conditionIcon: `https:${day.day.condition.icon}`,  // Icon URL for the weather condition (usually needs the full URL, so prefixing with "https:" might be necessary)
+    chanceOfRain: day.day.daily_chance_of_rain,  // Rain chance in percentage
+}));
+
+            console.log(forecastArray);
+            updateForecastUI(forecastArray)
+        })
+        .catch((error) => {
+            console.error("Network Error:", error);
+            showToast("Network error. Please try again.", "error");
+        })
+        .finally(() => {
+            // Hide the loader
+            loader.classList.add("hidden");
+        });
+}
+
+
+
+
 function fetchWeather(city) {
     const url = `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric`;
     loader.classList.remove("hidden");
@@ -177,6 +238,7 @@ function fetchWeather(city) {
                     sunset: formateTime(data.sys.sunset),
                     icon: data.weather[0].icon,
                 };
+                fetchForecast(city)
                 updateWeatherUI(weatherData);
             } else {
                 console.error(`Error: ${data.message}`);
@@ -191,6 +253,24 @@ function fetchWeather(city) {
             loader.classList.add("hidden");
         });
 }
+
+// Handle Save
+async function handleSave(city) {
+    try {
+        if (!userID) {
+            showToast("Please log in to save locations.", "error");
+            return;
+        }
+
+        const saveData = { city, user: userID };
+        await service.createSave(saveData);
+        showToast(`Location saved: ${city}`, "success");
+    } catch (error) {
+        console.error("Error saving location:", error);
+        showToast("Failed to save location. Please try again.", "error");
+    }
+}
+
 
 // Handle Search
 function handleSearch() {

@@ -1,6 +1,3 @@
-Here's the updated **README.md** without the project structure and with your repository link:
-
----
 
 # 🌦️ Weatherly - Weather App
 
@@ -75,13 +72,72 @@ VITE_APPWRITE_PROJECT_ID=your_project_id
 VITE_APPWRITE_DATABASE_ID=your_database_id
 VITE_APPWRITE_COLLECTION_ID=your_collection_id
 VITE_WEATHER_API_KEY=your_weather_api_key
+VITE_FORCAST_API_KEY=your_weather_forcast_api_key
 ```
 
 Replace the placeholders with your actual Appwrite project details and OpenWeatherMap API key.
 
 ---
 
-### **4. Run the Project**
+### **4. Weather API Integration**
+
+We are using two weather APIs:
+
+1. **Weather API (Forecast)**
+   We use the [Weather API](https://www.weatherapi.com/) to fetch the 7-day forecast for a given location. This API provides detailed weather data, including temperature, humidity, rain chances, and weather conditions for each day.
+
+   * **API Endpoint:** `https://api.weatherapi.com/v1/forecast.json`
+   * **Features:**
+
+     * 7-day weather forecast
+     * Hourly data
+     * Weather conditions (clear, cloudy, etc.)
+     * Wind, humidity, and rain data
+     * Supports multiple locations
+
+   **Example API Request:**
+
+   ```bash
+   https://api.weatherapi.com/v1/forecast.json?key=YOUR_API_KEY&q=London&days=7
+   ```
+
+   * **Parameters:**
+
+     * `key`: Your API key from Weather API.
+     * `q`: Location query (can be city name, lat/long, or IP address).
+     * `days`: Number of forecast days (up to 10).
+
+   **Note:** Replace `YOUR_API_KEY` with your actual API key.
+
+2. **OpenWeatherMap (Current Weather)**
+   The [OpenWeatherMap API](https://openweathermap.org/api) is used to fetch the current weather conditions for a given location. It provides live weather data, including temperature, humidity, pressure, and weather descriptions.
+
+   * **API Endpoint:** `https://api.openweathermap.org/data/2.5/weather`
+   * **Features:**
+
+     * Current weather data
+     * Temperature, humidity, and pressure details
+     * Weather descriptions (sunny, cloudy, etc.)
+     * Wind speed and direction
+     * Supports multiple locations
+
+   **Example API Request:**
+
+   ```bash
+   https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY&units=metric
+   ```
+
+   * **Parameters:**
+
+     * `appid`: Your API key from OpenWeatherMap.
+     * `q`: Location query (city name).
+     * `units`: Specifies the units of measurement. Use `metric` for Celsius.
+
+   **Note:** Replace `YOUR_API_KEY` with your actual API key.
+
+---
+
+### **5. Run the Project**
 
 Start the development server:
 
@@ -110,3 +166,6 @@ Leave a ⭐ if you like this project!
 ---
 
 Let me know if you'd like further adjustments! 😊
+
+---
+
