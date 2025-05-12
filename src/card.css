@@ -1,0 +1,204 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+.weatherCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    max-width: 1000px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 20px;
+    padding-top: 25px;
+    gap: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInUp 0.5s forwards;
+}
+
+.save-btn-container-top {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.save-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #0056b3;
+}
+
+.weatherData {
+    display: flex;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.weatherData-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e89ae;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 60px;
+}
+
+.weatherData-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.weatherData-right-top {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.weatherData-right-bottom {
+    display: flex;
+    gap: 15px;
+}
+
+.weatherData-right-bottom-left, .weatherData-right-bottom-right {
+    flex: 1;
+    background-color: #eef2f3;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.degree {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.weather-type {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.extraData, .sunData {
+    display: flex;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 20px;
+    justify-content: space-around;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.data-item i {
+    color: #4e89ae;
+    font-size: 1.5rem;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .weatherCard {
+        width: 80vw; /* Decrease the width to fit mobile screens */
+        padding: 15px;
+        padding-top: 30px;
+    }
+
+    .weatherData {
+        flex-direction: column; /* Stack the weather data vertically */
+        gap: 10px;
+    }
+
+    .weatherData-left {
+        font-size: 50px; /* Smaller font size for mobile */
+    }
+
+    .weatherData-right {
+        flex-direction: column; /* Stack the right side data vertically */
+        gap: 10px;
+    }
+
+    .weatherData-right-top {
+        font-size: 2rem; /* Adjust font size */
+        text-align: center;
+
+    }
+
+    .weatherData-right-bottom {
+        display: block; /* Stack the left and right sections of temperatures */
+        gap: 10px;
+
+    }
+
+    .weatherData-right-bottom-left,
+    .weatherData-right-bottom-right {
+        flex: unset; /* Allow items to take full width */
+        text-align: center;
+    }
+
+    .extraData, .sunData {
+        flex-direction: column; /* Stack the data items vertically */
+        gap: 15px;
+    }
+
+    .data-item {
+        font-size: 0.9rem; /* Adjust font size for mobile */
+        align-items: flex-start; /* Align data to the left */
+    }
+
+    .save-btn-container-top {
+        top: 10px;
+        right: 10px; /* Slightly adjust button position */
+    }
+
+    .save-btn {
+        padding: 6px 12px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust button font size */
+    }
+    .weatherCard{
+        /* text-align: center; */
+    }
+}

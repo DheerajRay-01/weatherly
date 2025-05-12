@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9fb;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #dbe7f9; /* Slightly darker and more defined */
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInUp 0.5s forwards;
+}
+
+
+/* Saved Locations List */
+.saved-locations-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Location Item */
+.location-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.location-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* City and Date Styles */
+.location-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.city-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0077b6;
+}
+
+.created-at {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Button Styles */
+.location-item button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* Check Weather Button */
+.location-item .check-weather-btn {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.location-item .check-weather-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Delete Button */
+.location-item .delete-btn {
+    background-color: #f44336;
+    color: #ffffff;
+}
+
+.location-item .delete-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 30px;
+        text-align: center;
+    }
+
+    .location-item {
+        flex-direction: column;
+        margin: 10px;
+        /* align-items: flex-start; */
+    }
+
+    .location-info {
+        margin-bottom: 15px;
+    }
+
+    .location-item button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

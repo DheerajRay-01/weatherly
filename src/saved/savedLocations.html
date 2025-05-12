@@ -1,0 +1,45 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Saved Locations - Weatherly</title>
+        <link rel="stylesheet" href="../saved/savedLocations.css">
+        <link rel="stylesheet" href="../style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+        <div class="logo">
+            <a href="/" class="logo-link">Weatherly</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="./savedLocations.html">Saved Locations</a></li>
+            <!-- <li><a href="#">5 Day Forecast</a></li> -->
+           
+        </ul>
+    </nav>
+
+
+        <!-- Main Content -->
+        <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+        
+        <div class="container">
+            <h2>Saved Locations</h2>
+            <ul class="saved-locations-list" id="saved-locations-list">
+                <!-- Saved Locations will be dynamically loaded here -->
+            </ul>
+        </div>
+
+        <script type="module" src="../script.js"></script>
+        <script type="module" src="./savedLocation.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/card.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <nav class="navbar">
+    <div class="logo">
+        <a href="/" class="logo-link">Weatherly</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="./src/saved/savedLocations.html">Saved </a></li>
+        <li class="profile-menu">
+            <a href="#" id="profile-icon">
+                
+            </a>
+            <div class="dropdown" id="profile-dropdown">
+                <p id="user-name">User Name</p>
+                <p id="user-email">user@example.com</p>
+                <hr>
+                <button id="auth-btn">Logout</button>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+
+    <div class="container">
+      <div class="search-section">
+        <div class="search-bar">
+          <!-- <form onsubmit="handleSubmit(event)"> -->
+            <input type="text" placeholder="Enter location..." id="location-input">
+            <button type="submit" id="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        <!-- </form> -->
+        
+        </div>
+    </div>
+
+    
+    <div class="weatheContainer">
+                 <div id="loader" class="loader-container hidden">
+    <div class="loader"></div>
+</div>
+        <div class="welcome-card">
+            <i class="fas fa-cloud-sun"></i>
+            <h3>Welcome to Weatherly!</h3>
+            <p>Find out the weather updates for your city. Just type a city name, and we'll take care of the rest!</p>
+        </div>
+        
+      </div>
+        
+      </div>
+  </div>
+    <script type="module" src="./src/script.js">
+      
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

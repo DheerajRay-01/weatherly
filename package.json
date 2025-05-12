@@ -1,0 +1,18 @@
+{
+  "name": "weather",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "appwrite": "^17.0.2",
+    "toastify-js": "^1.12.0"
+  }
+}
